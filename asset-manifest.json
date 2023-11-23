@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tableauhackathon/static/css/main.f855e6bc.css",
+    "main.js": "/tableauhackathon/static/js/main.bc24b7ff.js",
+    "static/js/787.2544c74b.chunk.js": "/tableauhackathon/static/js/787.2544c74b.chunk.js",
+    "index.html": "/tableauhackathon/index.html",
+    "main.f855e6bc.css.map": "/tableauhackathon/static/css/main.f855e6bc.css.map",
+    "main.bc24b7ff.js.map": "/tableauhackathon/static/js/main.bc24b7ff.js.map",
+    "787.2544c74b.chunk.js.map": "/tableauhackathon/static/js/787.2544c74b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.bc24b7ff.js"
+  ]
+}
