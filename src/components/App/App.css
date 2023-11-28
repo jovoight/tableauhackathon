@@ -14,10 +14,7 @@
 }
 
 .App-header {
-  background: url("./unsplash__K6zAyC9yC0.png") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: url(./unsplash__K6zAyC9yC0.png) no-repeat center center fixed; 
   background-size: cover;
   min-height: 100vh;
   display: flex;
