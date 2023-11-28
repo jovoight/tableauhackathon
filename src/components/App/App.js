@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Link from "../Link/Link.js";
+import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
 
 const App = () => {
