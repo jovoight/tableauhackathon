@@ -14,7 +14,11 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: url("./unsplash__K6zAyC9yC0.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
