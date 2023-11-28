@@ -4,7 +4,7 @@ import "./LinkList.css";
 const LinkList = () => {
     return (
         <>
-            
+            <div></div>
         </>
     );
 };
