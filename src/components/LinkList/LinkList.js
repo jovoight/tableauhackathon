@@ -9,4 +9,4 @@ const LinkList = () => {
     );
 };
 
-export default Link;
+export default LinkList;
