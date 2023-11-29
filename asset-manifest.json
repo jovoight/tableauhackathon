@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/tableauhackathon/static/css/main.966ea985.css",
-    "main.js": "/tableauhackathon/static/js/main.e40528f6.js",
+    "main.css": "/tableauhackathon/static/css/main.ea5fc126.css",
+    "main.js": "/tableauhackathon/static/js/main.e2c0a332.js",
     "static/js/787.2544c74b.chunk.js": "/tableauhackathon/static/js/787.2544c74b.chunk.js",
-    "static/media/unsplash__K6zAyC9yC0.png": "/tableauhackathon/static/media/unsplash__K6zAyC9yC0.f0b7176be9bed4827d54.png",
+    "static/media/background.png": "/tableauhackathon/static/media/background.f0b7176be9bed4827d54.png",
+    "static/media/profilepic.png": "/tableauhackathon/static/media/profilepic.e5637fc98e577ea21267.png",
     "index.html": "/tableauhackathon/index.html",
-    "main.966ea985.css.map": "/tableauhackathon/static/css/main.966ea985.css.map",
-    "main.e40528f6.js.map": "/tableauhackathon/static/js/main.e40528f6.js.map",
+    "main.ea5fc126.css.map": "/tableauhackathon/static/css/main.ea5fc126.css.map",
+    "main.e2c0a332.js.map": "/tableauhackathon/static/js/main.e2c0a332.js.map",
     "787.2544c74b.chunk.js.map": "/tableauhackathon/static/js/787.2544c74b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.966ea985.css",
-    "static/js/main.e40528f6.js"
+    "static/css/main.ea5fc126.css",
+    "static/js/main.e2c0a332.js"
   ]
 }
