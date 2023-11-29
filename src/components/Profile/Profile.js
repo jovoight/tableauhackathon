@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Profile.css";
 
-const Profile = () => {
+const Profile = ({ user }) => {
     return (
         <>
-            <img src="./image 3.png"/>
+            <img src="" alt="Profile Pic"/>
+            <p>My Links Website</p>
         </>
     );
 };

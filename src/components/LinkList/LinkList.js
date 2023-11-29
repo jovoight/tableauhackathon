@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./LinkList.css";
 
-const LinkList = () => {
+const LinkList = ({ links }) => {
+
+
+
     return (
         <>
-            <div></div>
+            <div>
+
+            </div>
         </>
     );
 };
