@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
+import ShareBar from "../ShareBar/ShareBar.js";
 
 const App = () => {
 
-  const [user, setUser] = useState({
+  const user = {
     id: 1,
     name: "My Links Website",
     profilePicPath: "./profilepic.png",
@@ -23,10 +24,6 @@ const App = () => {
         url: "link3url"
       }
     ]
-  });
-
-  const updateUser = (newUser) => {
-    setUser(newUser);
   };
 
   return (
@@ -34,11 +31,11 @@ const App = () => {
       <Profile 
         name={user.name}
         profilePicPath={user.profilePicPath} 
-        onUserChange={updateUser}
       />
       <LinkList 
         links={user.links}
       />
+      <ShareBar/>
     </div>
   );
 };
