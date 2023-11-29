@@ -1,12 +1,15 @@
 .ShareBar {
     list-style-type: none;
+    padding: 0;
 }
 .ShareBar li {
     display: inline-block;
-    text-align: center;
     margin: 0.25rem;
 }
-.ShareBarContainer {
-    align-items: center;
-    justify-content: center;
+.ShareBar svg path {
+    fill: black;
+    transition: fill 0.3s;
+}
+.ShareBar svg:hover path {
+    fill: white;
 }

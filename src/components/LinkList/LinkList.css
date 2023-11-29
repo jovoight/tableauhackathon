@@ -1,3 +1,36 @@
 .LinkList {
     margin-top: 12rem;
+    width: 100%;
+}
+a:link {
+    color: black;
+}
+a:visited {
+    color: black;
+}
+.subscribe {
+    margin: 2rem auto;
+    padding: 0.6rem 0;
+    width: 23rem;
+    border: 1px solid black;
+    border-radius: 3rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+    top: 50%;
+    left: 50%;
+    display: block;
+    transition: width 0.3s, border 0.3s, color 0.3s, background-color 0.3s;
+}
+.subscribe:hover {
+    border: 1px solid white;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 23.5rem;
+}
+.subscribe path {
+    fill: black;
+    transition: fill 0.3s;
+}
+.subscribe:hover path {
+    fill: white;
 }

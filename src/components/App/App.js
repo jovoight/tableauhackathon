@@ -22,12 +22,12 @@ const App = () => {
       {
         title: "Link 3 Title",
         url: "link3url"
-      },
-      {
-        title: "Subscribe",
-        url: "subscribeurl"
       }
-    ]
+    ],
+    subscribeLink: {
+      title: "Subscribe",
+      url: "subscribeurl"
+    }
   };
 
   return (
@@ -38,6 +38,7 @@ const App = () => {
       />
       <LinkList 
         links={user.links}
+        subscribeLink={user.subscribeLink}
       />
       <ShareBar/>
     </div>
