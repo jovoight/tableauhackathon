@@ -22,6 +22,10 @@ const App = () => {
       {
         title: "Link 3 Title",
         url: "link3url"
+      },
+      {
+        title: "Subscribe",
+        url: "subscribeurl"
       }
     ]
   };

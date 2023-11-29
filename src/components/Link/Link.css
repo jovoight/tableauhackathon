@@ -5,6 +5,11 @@ a:visited {
     color: black;
 }
 .link {
-    margin: 0.25rem;
+    margin: 2rem 0.25rem;
     display: block;
+    border: 1px solid black;
+    padding: 0.6rem 8rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+    border-radius: 3rem;
 }

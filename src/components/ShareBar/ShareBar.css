@@ -1,0 +1,12 @@
+.ShareBar {
+    list-style-type: none;
+}
+.ShareBar li {
+    display: inline-block;
+    text-align: center;
+    margin: 0.25rem;
+}
+.ShareBarContainer {
+    align-items: center;
+    justify-content: center;
+}
