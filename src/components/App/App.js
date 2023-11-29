@@ -1,36 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
 
 const App = () => {
 
-  const user = {
+  const [user, setUser] = useState({
     id: 1,
     name: "My Links Website",
-    profilePicturePath: "./images/profilepic.png",
-    links: {
-      link1: {
+    profilePicPath: "./profilepic.png",
+    links: [
+      {
         title: "Link 1 Title",
-        src: "link1src"
+        url: "link1url"
       },
-      link2: {
+      {
         title: "Link 2 Title",
-        src: "link2src"
+        url: "link2url"
       },
-      link3: {
+      {
         title: "Link 3 Title",
-        src: "link3src"
+        url: "link3url"
       }
-    }
+    ]
+  });
+
+  const updateUser = (newUser) => {
+    setUser(newUser);
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Profile user={user}/>
-      </header>
-      <LinkList links={user.links}/>
+      <Profile 
+        name={user.name}
+        profilePicPath={user.profilePicPath} 
+        onUserChange={updateUser}
+      />
+      <LinkList 
+        links={user.links}
+      />
     </div>
   );
 };

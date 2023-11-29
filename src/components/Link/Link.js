@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Link.css";
 
-const Link = () => {
-    
+const Link = ({ title, url }) => {
+    return (
+        <a href={url}>
+            test
+        </a>
+    );
 };
 
 export default Link;

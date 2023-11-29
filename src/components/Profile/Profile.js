@@ -1,12 +1,12 @@
 import React from "react";
 import "./Profile.css";
 
-const Profile = ({ user }) => {
+const Profile = ({ name, profilePicPath }) => {
     return (
-        <>
-            <img src="" alt="Profile Pic"/>
-            <p>My Links Website</p>
-        </>
+        <div className="Profile">
+            <img src={require(`${profilePicPath}`)} alt="Profile Pic" className="profile-pic"/>
+            <p className="name">{name}</p>
+        </div>
     );
 };
 
