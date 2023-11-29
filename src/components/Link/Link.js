@@ -3,8 +3,8 @@ import "./Link.css";
 
 const Link = ({ title, url }) => {
     return (
-        <a href={url}>
-            test
+        <a href={url} className="link">
+            {`${title}`}
         </a>
     );
 };

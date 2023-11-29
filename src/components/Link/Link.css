@@ -1,0 +1,10 @@
+a:link {
+    color: black;
+}
+a:visited {
+    color: black;
+}
+.link {
+    margin: 0.25rem;
+    display: block;
+}
