@@ -2,7 +2,7 @@ import React from "react";
 import "./LinkList.css";
 import Link from "../Link/Link.js";
 
-const LinkList = ({ links, subscribeLink }) => {
+const LinkList = ({ links, subscribeLink, linkClickHandler }) => {
 
     return (
         <div className="LinkList">
@@ -12,6 +12,7 @@ const LinkList = ({ links, subscribeLink }) => {
                         title={link.title}
                         url={link.url}
                         id={links.indexOf(link)}
+                        onClick={linkClickHandler}
                     />
                 );
             })}

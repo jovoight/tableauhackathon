@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+
 import "./App.css";
 import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
@@ -13,7 +15,7 @@ const App = () => {
     links: [
       {
         title: "Link 1 Title",
-        url: "link1url"
+        url: "https://www.google.com"
       },
       {
         title: "Link 2 Title",
@@ -35,6 +37,7 @@ const App = () => {
     converted = false;
     timeOnSite = 0;
     entryPoint = Document.referrer;
+    ipAddress = 
 
     get click() {
       return this.clicked;
@@ -70,6 +73,28 @@ const App = () => {
     //No setter for entryPoint as this will never change
   };
 
+  let thisVisit;
+  let startTime;
+  let endTime;
+
+  
+  const handlePageShow = () => {
+    thisVisit = new pageVisit();
+    startTime = Date.now();
+  };
+  const handlePageHide = () => {
+    setTimeout(() => {
+      endTime = Date.now();
+      thisVisit.timeOnSite = endTime - startTime;
+    }, "1000")
+  };
+  const handleClick = () => {
+    thisVisit.clicked = true;
+  };
+
+  window.addEventListener("pageshow", handlePageShow);
+  window.addEventListener("pagehide", handlePageHide);
+
   return (
     <div className="App">
       <Profile 
@@ -78,6 +103,7 @@ const App = () => {
       />
       <LinkList 
         links={user.links}
+        linkClickHandler={handleClick}
         subscribeLink={user.subscribeLink}
       />
       <ShareBar/>
