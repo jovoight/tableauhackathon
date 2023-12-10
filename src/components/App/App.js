@@ -30,6 +30,46 @@ const App = () => {
     }
   };
 
+  const pageVisit = class {
+    clicked = false;
+    converted = false;
+    timeOnSite = 0;
+    entryPoint = Document.referrer;
+
+    get clicked() {
+      return this.clicked;
+    };
+    get converted() {
+      return this.converted;
+    }
+    get timeOnSite() {
+      return this.timeOnSite;
+    };
+    get entryPoint() {
+      return this.entryPoint;
+    };
+
+    /**
+     * @param {boolean} clicked;
+     */
+    set clicked(clicked) {
+      this.clicked = clicked;
+    };
+    /**
+     * @param {boolean} converted
+     */
+    set converted(converted) {
+      this.converted = converted;
+    };
+    /**
+     * @param {number} timeOnSite
+     */
+    set timeOnSite(timeOnSite) {
+      this.timeOnSite = timeOnSite;
+    };
+    //No setter for entryPoint as this will never change
+  };
+
   return (
     <div className="App">
       <Profile 
