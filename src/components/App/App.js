@@ -36,36 +36,36 @@ const App = () => {
     timeOnSite = 0;
     entryPoint = Document.referrer;
 
-    get clicked() {
+    get click() {
       return this.clicked;
     };
-    get converted() {
+    get convert() {
       return this.converted;
     }
-    get timeOnSite() {
+    get time() {
       return this.timeOnSite;
     };
-    get entryPoint() {
+    get entry() {
       return this.entryPoint;
     };
 
     /**
-     * @param {boolean} clicked;
+     * @param {boolean} click;
      */
-    set clicked(clicked) {
-      this.clicked = clicked;
+    set click(click) {
+      this.clicked = click;
     };
     /**
-     * @param {boolean} converted
+     * @param {boolean} convert
      */
-    set converted(converted) {
-      this.converted = converted;
+    set convert(convert) {
+      this.converted = convert;
     };
     /**
-     * @param {number} timeOnSite
+     * @param {number} time
      */
-    set timeOnSite(timeOnSite) {
-      this.timeOnSite = timeOnSite;
+    set time(time) {
+      this.timeOnSite = time;
     };
     //No setter for entryPoint as this will never change
   };
