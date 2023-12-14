@@ -5,7 +5,6 @@ import "./App.css";
 import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
 import ShareBar from "../ShareBar/ShareBar.js";
-import DataTester from "../DataTester/DataTester.js";
 
 const App = () => {
 
@@ -33,18 +32,37 @@ const App = () => {
     }
   };
 
-  const [ip, setIp] = useState("");
-  const [location, setLocation] = useState({});
+  const [ipAddress, setIpAddress] = useState("");
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
+  const [city, setCity] = useState("");
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
   const [clicked, setClicked] = useState(false);
   const [converted, setConverted] = useState(false);
-  const referrer = Document.referrer;
+  let referrer;
+  if (Document.referrer) {
+    referrer = Document.referrer;
+  } else {
+    referrer = "";
+  };
+
+  const params = {
+    ipAddress: ipAddress,
+    country: country,
+    region: region,
+    city: city,
+    startTime: startTime,
+    endTime: endTime,
+    clicked: clicked,
+    converted: converted,
+    referrer: referrer
+  };
 
   const postToDatabase = () => {
-    axios.post("api/endpoint", {
-      params: "params"
-    })
+    axios.post("api/endpoint", params)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   const apiKey = "at_NRI9Zaar6ucd4U4mNbI3WwvAaVrJc";
@@ -53,23 +71,26 @@ const App = () => {
     //On page show
     const getIp = async () => {
       const result = await axios.get("https://api.ipify.org");
-      setIp(result.data);
+      setIpAddress(result.data);
     };
     getIp();
 
     const getLocation = async () => {
-      const result = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ip}`);
-      setLocation(result.data.location);
+      const result = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`);
+      setCountry(result.data.location.country);
+      setRegion(result.data.location.region);
+      setCity(result.data.location.city);
     };
     getLocation();
 
     setStartTime(Date.now());
+
     //On page hide
     return () => {
       setEndTime(Date.now());
       postToDatabase();
     };
-  }, [ip]);
+  }, []);
 
 
 
@@ -82,15 +103,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <DataTester
-        ip={ip}
-        location={location}
-        startTime={startTime}
-        endTime={endTime}
-        clicked={clicked}
-        converted={converted}
-        referrer={referrer}
-      >
         <Profile 
           name={user.name}
           profilePicPath={user.profilePicPath}
@@ -102,7 +114,6 @@ const App = () => {
           linkConvertHandler={handleConverted}
         />
         <ShareBar/>
-      </DataTester>
     </div>
     
   );
