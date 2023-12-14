@@ -59,46 +59,52 @@ const App = () => {
     referrer: referrer
   };
 
-  const postToDatabase = () => {
-    axios.post("api/endpoint", params)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  };
-
   const apiKey = "at_NRI9Zaar6ucd4U4mNbI3WwvAaVrJc";
 
-  useEffect(() => {
-    //On page show
-    const getIp = async () => {
-      const result = await axios.get("https://api.ipify.org");
-      setIpAddress(result.data);
-    };
-    getIp();
-
-    const getLocation = async () => {
-      const result = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`);
-      setCountry(result.data.location.country);
-      setRegion(result.data.location.region);
-      setCity(result.data.location.city);
-    };
-    getLocation();
-
+  const getIp = async () => {
+    const result = await axios.get("https://api.ipify.org");
+    setIpAddress(result.data);
+    console.log(result.data);
+  };
+  const getLocation = async () => {
+    const result = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`);
+    setCountry(result.data.location.country);
+    setRegion(result.data.location.region);
+    setCity(result.data.location.city);
+    console.log("got location");
+  };
+  const startTimer = () => {
     setStartTime(Date.now());
+  };
+  const endTimer = () => {
+    setEndTime(Date.now());
+  };
 
-    //On page hide
-    return () => {
-      setEndTime(Date.now());
-      postToDatabase();
-    };
+  useEffect(() => {
+    window.addEventListener("pageshow", getIp);
+    window.addEventListener("pageshow", getLocation);
+    window.addEventListener("pageshow", startTimer);
+    window.addEventListener("pagehide", endTimer);
+    window.addEventListener("pagehide", postToDatabase);
+    return (() => {
+      window.removeEventListener("pageshow", getIp);
+      window.removeEventListener("pageshow", getLocation);
+      window.removeEventListener("pageshow", startTimer);
+      window.removeEventListener("pagehide", endTimer);
+      window.removeEventListener("pagehide", postToDatabase);
+    });
   }, []);
-
-
-
+  
   const handleClick = () => {
     setClicked(true);
   };
   const handleConverted = () => {
     setConverted(true);
+  };
+  const postToDatabase = () => {
+    axios.post("api/endpoint", params)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   return (
@@ -110,7 +116,7 @@ const App = () => {
         <LinkList 
           links={user.links}
           subscribeLink={user.subscribeLink}
-          linkClickHandler={handleClick}
+          handleClick={handleClick}
           linkConvertHandler={handleConverted}
         />
         <ShareBar/>
