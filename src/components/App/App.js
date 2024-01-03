@@ -93,14 +93,12 @@ const App = () => {
   
 
   useEffect(() => {
-    axios.post("https://linktreeapianalytics.pythonanywhere.com/link", {clicks: 7})
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
     window.addEventListener("pageshow", getIp);
     window.addEventListener("pageshow", getLocation);
     window.addEventListener("pageshow", startTimer);
     window.addEventListener("pagehide", endTimer);
     window.addEventListener("pagehide", postToDatabase);
+    console.log(params);
     return (() => {
       window.removeEventListener("pageshow", getIp);
       window.removeEventListener("pageshow", getLocation);
