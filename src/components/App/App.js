@@ -90,9 +90,12 @@ const App = () => {
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
-  postToDatabase();
+  
 
   useEffect(() => {
+    axios.post("https://linktreeapianalytics.pythonanywhere.com/link", {clicks: 7})
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
     window.addEventListener("pageshow", getIp);
     window.addEventListener("pageshow", getLocation);
     window.addEventListener("pageshow", startTimer);
