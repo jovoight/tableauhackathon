@@ -86,7 +86,7 @@ const App = () => {
     setConverted(true);
   };
   const postToDatabase = () => {
-    axios.post("api/endpoint", params)
+    axios.post("https://linktreeapianalytics.pythonanywhere.com/visit", params)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
