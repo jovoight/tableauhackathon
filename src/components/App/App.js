@@ -79,6 +79,17 @@ const App = () => {
   const endTimer = () => {
     setEndTime(Date.now());
   };
+  const handleClick = () => {
+    setClicked(true);
+  };
+  const handleConverted = () => {
+    setConverted(true);
+  };
+  const postToDatabase = () => {
+    axios.post("https://linktreeapianalytics.pythonanywhere.com/visit", params)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
 
   useEffect(() => {
     window.addEventListener("pageshow", getIp);
@@ -95,18 +106,6 @@ const App = () => {
     });
   }, []);
   
-  const handleClick = () => {
-    setClicked(true);
-  };
-  const handleConverted = () => {
-    setConverted(true);
-  };
-  const postToDatabase = () => {
-    axios.post("api/endpoint", params)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  };
-
   return (
     <div className="App">
         <Profile 
