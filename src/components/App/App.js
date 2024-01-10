@@ -86,7 +86,7 @@ const App = () => {
     setConverted(true);
   };
 
-  const apiUrl = "http://linktreeapianalytics.pythonanywhere.com/link";
+  const apiUrl = "https://linktreeapianalytics.pythonanywhere.com/visits";
   axios.post(apiUrl, params)
     .catch(err => console.log(err));
 
