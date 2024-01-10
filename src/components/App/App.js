@@ -85,11 +85,14 @@ const App = () => {
   const handleConverted = () => {
     setConverted(true);
   };
-  const postToDatabase = () => {
-    axios.post("https://linktreeapianalytics.pythonanywhere.com/visit", params)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  };
+
+  const apiUrl = "http://linktreeapianalytics.pythonanywhere.com/link";
+  axios.post(apiUrl, params)
+    .catch(err => console.log(err));
+
+
+
+    
   
 
   useEffect(() => {
@@ -97,14 +100,12 @@ const App = () => {
     window.addEventListener("pageshow", getLocation);
     window.addEventListener("pageshow", startTimer);
     window.addEventListener("pagehide", endTimer);
-    window.addEventListener("pagehide", postToDatabase);
     console.log(params);
     return (() => {
       window.removeEventListener("pageshow", getIp);
       window.removeEventListener("pageshow", getLocation);
       window.removeEventListener("pageshow", startTimer);
       window.removeEventListener("pagehide", endTimer);
-      window.removeEventListener("pagehide", postToDatabase);
     });
   }, []);
   
