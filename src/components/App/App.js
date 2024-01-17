@@ -57,7 +57,6 @@ const App = () => {
   const convertHandler = () => {
     setConverted(true);
   };
-
   const startTimer = () => {
     setStartTime(Date.now());
   };
