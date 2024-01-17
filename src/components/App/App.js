@@ -46,13 +46,6 @@ const App = () => {
     setCountry(result.data.location.country);
     setRegion(result.data.location.region);
     setCity(result.data.location.city);
-    console.log("Successfully retrieved location.");
-  };
-  const startTimer = () => {
-    setStartTime(Date.now());
-  };
-  const endTimer = () => {
-    setEndTime(Date.now());
   };
   const clickHandler = () => {
     setClicked(true);
@@ -61,10 +54,21 @@ const App = () => {
   const convertHandler = () => {
     setConverted(true);
   };
-  const postToDatabase = () => {
-    alert("posted!");
+
+  const loadHandler = () => {
+    setStartTime(Date.now());
+    getIp();
+    getLocation();
+    setTimeout(() => {console.log(params);}, 1000);
+  };
+
+  const beforeUnloadHandler = (event) => {
+    event.preventDefault();
+    event.returnValue = true;
+
+    setEndTime(Date.now());
     axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
-    console.log(`Successfully posted to database with the following parameters: ${params}`);   
+    alert(`Successfully posted to database with the following parameters: ${params.toString()}`);   
   };
     
   const user = {
@@ -97,20 +101,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("load", getIp);
-    window.addEventListener("load", getLocation);
-    window.addEventListener("load", startTimer);
-    window.addEventListener("beforeunload", endTimer);
-    window.addEventListener("beforeunload", postToDatabase, {
-      
-    });
-    return (() => {
-      window.removeEventListener("load", getIp);
-      window.removeEventListener("load", getLocation);
-      window.removeEventListener("load", startTimer);
-      window.removeEventListener("beforeunload", endTimer);
-      window.removeEventListener("beforeunload", postToDatabase);
-    });
+    window.addEventListener("load", loadHandler);
+    window.addEventListener("beforeunload", beforeUnloadHandler);
+    return () => {
+      window.removeEventListener("load", loadHandler);
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
+    };
   }, []);
   
   return (
