@@ -13,8 +13,8 @@ const App = () => {
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
   const [city, setCity] = useState("");
-  const [startTime, setStartTime] = useState(0);
-  const [endTime, setEndTime] = useState(0);
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [clicked, setClicked] = useState(false);
   const [converted, setConverted] = useState(false);
   let referrer;
@@ -59,14 +59,18 @@ const App = () => {
     setConverted(true);
   };
   const startTimer = () => {
-    setStartTime(Date.now());
+    const timeElapsed = Date.now();
+    const startingTime = new Date(timeElapsed);
+    setStartTime(startingTime.toUTCString());
   };
 
   window.onbeforeunload = (event) => {
     event.preventDefault();
     event.returnValue = true;
 
-    setEndTime(Date.now());
+    const timeElapsed = Date.now();
+    const endingTime = new Date(timeElapsed);
+    setEndTime(endingTime.toUTCString());
     axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
     console.log(params);
     alert(`Successfully posted to database with the following parameters: ${params}`);   
@@ -100,7 +104,6 @@ const App = () => {
       url: "subscribeurl"
     }
   };
-  console.log(params);
   useEffect(() => {
     window.addEventListener("pageshow", getIp);
     window.addEventListener("pageshow", getLocation);
