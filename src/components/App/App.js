@@ -5,6 +5,7 @@ import "./App.css";
 import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
 import ShareBar from "../ShareBar/ShareBar.js";
+import TestInput from "../TestInput/TestInput.js";
 
 const App = () => {
 
@@ -40,12 +41,14 @@ const App = () => {
   const getIp = async () => {
     const result = await axios.get("https://api.ipify.org");
     setIpAddress(result.data);
+    console.log("got IP");
   };
   const getLocation = async () => {
     const result = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${ipifyApiKey}&ipAddress=${ipAddress}`);
     setCountry(result.data.location.country);
     setRegion(result.data.location.region);
     setCity(result.data.location.city);
+    console.log(`got location ${result.data}`);
   };
   const clickHandler = () => {
     setClicked(true);
@@ -55,19 +58,17 @@ const App = () => {
     setConverted(true);
   };
 
-  const loadHandler = () => {
+  const startTimer = () => {
     setStartTime(Date.now());
-    getIp();
-    getLocation();
-    setTimeout(() => {console.log(params);}, 1000);
   };
 
-  const beforeUnloadHandler = (event) => {
+  window.onbeforeunload = (event) => {
     event.preventDefault();
     event.returnValue = true;
 
     setEndTime(Date.now());
     axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
+    console.log(params);
     alert(`Successfully posted to database with the following parameters: ${params}`);   
   };
     
@@ -99,13 +100,15 @@ const App = () => {
       url: "subscribeurl"
     }
   };
-
+  console.log(params);
   useEffect(() => {
-    window.addEventListener("load", loadHandler);
-    window.addEventListener("beforeunload", beforeUnloadHandler);
+    window.addEventListener("pageshow", getIp);
+    window.addEventListener("pageshow", getLocation);
+    window.addEventListener("pageshow", startTimer);
     return () => {
-      window.removeEventListener("load", loadHandler);
-      window.removeEventListener("beforeunload", beforeUnloadHandler);
+      window.removeEventListener("pageshow", getIp);
+      window.removeEventListener("pageshow", getLocation);
+      window.removeEventListener("pageshow", startTimer);
     };
   }, []);
   
@@ -122,6 +125,7 @@ const App = () => {
           handleConvert={user.handleConvert}
         />
         <ShareBar />
+        <TestInput />
     </div>
     
   );
