@@ -68,7 +68,7 @@ const App = () => {
 
     setEndTime(Date.now());
     axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
-    alert(`Successfully posted to database with the following parameters: ${params.toString()}`);   
+    alert(`Successfully posted to database with the following parameters: ${params}`);   
   };
     
   const user = {
