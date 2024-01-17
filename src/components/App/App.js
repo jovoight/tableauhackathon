@@ -62,11 +62,13 @@ const App = () => {
     const timeElapsed = Date.now();
     const startingTime = new Date(timeElapsed);
     setStartTime(startingTime.toUTCString());
+    console.log("set start time");
   };
   const endTimer = () => {
     const timeElapsed = Date.now();
     const endingTime = new Date(timeElapsed);
     setEndTime(endingTime.toUTCString());
+    console.log("set end time");
   };
 
   window.onpageshow = (event) => {
