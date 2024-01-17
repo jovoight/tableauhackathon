@@ -80,7 +80,9 @@ const App = () => {
   window.onbeforeunload = (event) => {
     event.preventDefault();
     endTimer();
-    axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
+    setTimeout(() => {
+      axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
+    }, 1000)
     console.log(params);
   };
     
