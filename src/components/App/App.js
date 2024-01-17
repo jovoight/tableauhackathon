@@ -50,6 +50,7 @@ const App = () => {
     setCity(result.data.location.city);
     console.log(`got location ${result.data}`);
   };
+  //test
   const clickHandler = () => {
     setClicked(true);
     console.log("clicked!")
