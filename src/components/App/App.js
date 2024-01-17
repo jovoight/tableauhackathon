@@ -73,10 +73,10 @@ const App = () => {
     startTimer();
     getIp();
     getLocation();
-    console.log(params);
   };
 
   window.onbeforeunload = (event) => {
+    event.preventDefault();
     endTimer();
     axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
     console.log(params);
