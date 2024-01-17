@@ -63,6 +63,11 @@ const App = () => {
     const startingTime = new Date(timeElapsed);
     setStartTime(startingTime.toUTCString());
   };
+  const endTimer = () => {
+    const timeElapsed = Date.now();
+    const endingTime = new Date(timeElapsed);
+    setEndTime(endingTime.toUTCString());
+  };
 
   window.onpageshow = (event) => {
     startTimer();
@@ -72,9 +77,7 @@ const App = () => {
   };
 
   window.onbeforeunload = (event) => {
-    const timeElapsed = Date.now();
-    const endingTime = new Date(timeElapsed);
-    setEndTime(endingTime.toUTCString());
+    endTimer();
     axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
     console.log(params);
   };
