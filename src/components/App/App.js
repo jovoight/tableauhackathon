@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import "./App.css";
@@ -64,6 +64,13 @@ const App = () => {
     setStartTime(startingTime.toUTCString());
   };
 
+  window.onpageshow = (event) => {
+    startTimer();
+    getIp();
+    getLocation();
+    console.log(params);
+  };
+
   window.onbeforeunload = (event) => {
     event.preventDefault();
     event.returnValue = true;
@@ -73,7 +80,6 @@ const App = () => {
     setEndTime(endingTime.toUTCString());
     axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
     console.log(params);
-    alert(`Successfully posted to database with the following parameters: ${params}`);   
   };
     
   const user = {
@@ -104,17 +110,7 @@ const App = () => {
       url: "subscribeurl"
     }
   };
-  useEffect(() => {
-    window.addEventListener("pageshow", getIp);
-    window.addEventListener("pageshow", getLocation);
-    window.addEventListener("pageshow", startTimer);
-    return () => {
-      window.removeEventListener("pageshow", getIp);
-      window.removeEventListener("pageshow", getLocation);
-      window.removeEventListener("pageshow", startTimer);
-    };
-  }, []);
-  
+
   return (
     <div className="App">
         <Profile 
