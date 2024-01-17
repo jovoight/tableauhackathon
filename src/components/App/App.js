@@ -72,9 +72,6 @@ const App = () => {
   };
 
   window.onbeforeunload = (event) => {
-    event.preventDefault();
-    event.returnValue = true;
-
     const timeElapsed = Date.now();
     const endingTime = new Date(timeElapsed);
     setEndTime(endingTime.toUTCString());
