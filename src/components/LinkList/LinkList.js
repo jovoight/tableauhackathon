@@ -9,6 +9,8 @@ const LinkList = ({ links, subscribeLink, handleClick }) => {
             {links.map((link) => {
                 return (
                     <Link 
+                        className="Link"
+                        key={link.key}
                         title={link.title}
                         url={link.url}
                         id={links.indexOf(link)}

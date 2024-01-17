@@ -8,30 +8,6 @@ import ShareBar from "../ShareBar/ShareBar.js";
 
 const App = () => {
 
-  const user = {
-    id: 1,
-    name: "My Links Website",
-    profilePicPath: "./profilepic.png",
-    links: [
-      {
-        title: "Link 1 Title",
-        url: "https://www.google.com"
-      },
-      {
-        title: "Link 2 Title",
-        url: "link2url"
-      },
-      {
-        title: "Link 3 Title",
-        url: "link3url"
-      }
-    ],
-    subscribeLink: {
-      title: "Subscribe",
-      url: "subscribeurl"
-    }
-  };
-
   const [ipAddress, setIpAddress] = useState("");
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
@@ -59,19 +35,18 @@ const App = () => {
     referrer: referrer
   };
 
-  const apiKey = "at_NRI9Zaar6ucd4U4mNbI3WwvAaVrJc";
+  const ipifyApiKey = "at_NRI9Zaar6ucd4U4mNbI3WwvAaVrJc";
 
   const getIp = async () => {
     const result = await axios.get("https://api.ipify.org");
     setIpAddress(result.data);
-    console.log(result.data);
   };
   const getLocation = async () => {
-    const result = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`);
+    const result = await axios.get(`https://geo.ipify.org/api/v2/country,city?apiKey=${ipifyApiKey}&ipAddress=${ipAddress}`);
     setCountry(result.data.location.country);
     setRegion(result.data.location.region);
     setCity(result.data.location.city);
-    console.log("got location");
+    console.log("Successfully retrieved location.");
   };
   const startTimer = () => {
     setStartTime(Date.now());
@@ -79,33 +54,62 @@ const App = () => {
   const endTimer = () => {
     setEndTime(Date.now());
   };
-  const handleClick = () => {
+  const clickHandler = () => {
     setClicked(true);
+    console.log("clicked!")
   };
-  const handleConverted = () => {
+  const convertHandler = () => {
     setConverted(true);
   };
-
-  const apiUrl = "https://linktreeapianalytics.pythonanywhere.com/visits";
-  axios.post(apiUrl, params)
-    .catch(err => console.log(err));
-
-
-
+  const postToDatabase = () => {
+    alert("posted!");
+    axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
+    console.log(`Successfully posted to database with the following parameters: ${params}`);   
+  };
     
-  
+  const user = {
+    id: 1,
+    name: "My Links Website",
+    profilePicPath: "./profilepic.png",
+    handleClick: clickHandler,
+    handleConvert: convertHandler,
+    links: [
+      {
+        key: 0,
+        title: "Link 1 Title",
+        url: "https://www.google.com"
+      },
+      {
+        key: 1,
+        title: "Link 2 Title",
+        url: "link2url"
+      },
+      {
+        key: 2,
+        title: "Link 3 Title",
+        url: "link3url"
+      }
+    ],
+    subscribeLink: {
+      title: "Subscribe",
+      url: "subscribeurl"
+    }
+  };
 
   useEffect(() => {
-    window.addEventListener("pageshow", getIp);
-    window.addEventListener("pageshow", getLocation);
-    window.addEventListener("pageshow", startTimer);
-    window.addEventListener("pagehide", endTimer);
-    console.log(params);
+    window.addEventListener("load", getIp);
+    window.addEventListener("load", getLocation);
+    window.addEventListener("load", startTimer);
+    window.addEventListener("beforeunload", endTimer);
+    window.addEventListener("beforeunload", postToDatabase, {
+      
+    });
     return (() => {
-      window.removeEventListener("pageshow", getIp);
-      window.removeEventListener("pageshow", getLocation);
-      window.removeEventListener("pageshow", startTimer);
-      window.removeEventListener("pagehide", endTimer);
+      window.removeEventListener("load", getIp);
+      window.removeEventListener("load", getLocation);
+      window.removeEventListener("load", startTimer);
+      window.removeEventListener("beforeunload", endTimer);
+      window.removeEventListener("beforeunload", postToDatabase);
     });
   }, []);
   
@@ -118,10 +122,10 @@ const App = () => {
         <LinkList 
           links={user.links}
           subscribeLink={user.subscribeLink}
-          handleClick={handleClick}
-          linkConvertHandler={handleConverted}
+          handleClick={user.handleClick}
+          handleConvert={user.handleConvert}
         />
-        <ShareBar/>
+        <ShareBar />
     </div>
     
   );
