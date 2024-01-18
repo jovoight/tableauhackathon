@@ -41,7 +41,7 @@ const App = () => {
   const getIp = async () => {
     const result = await axios.get("https://api.ipify.org");
     setIpAddress(result.data);
-    console.log("this is the latest version.");
+    console.log("latest commit");
     console.log("got IP");
   };
   const getLocation = async () => {
@@ -87,7 +87,7 @@ const App = () => {
     getIp();
     getLocation();
   };
-  window.onbeforeunload = async (event) => {
+  window.onpagehide = async (event) => {
     event.preventDefault();
     endTimer();
   };
