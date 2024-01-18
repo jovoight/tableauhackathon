@@ -41,7 +41,7 @@ const App = () => {
   const getIp = async () => {
     const result = await axios.get("https://api.ipify.org");
     setIpAddress(result.data);
-    console.log("latest commit");
+    console.log("new commit");
     console.log("got IP");
   };
   const getLocation = async () => {
