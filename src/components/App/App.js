@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "./App.css";
@@ -53,7 +53,6 @@ const App = () => {
 
   const clickHandler = () => {
     setClicked(true);
-    console.log("clicked!")
   };
   const convertHandler = () => {
     setConverted(true);
@@ -64,26 +63,32 @@ const App = () => {
     setStartTime(startingTime.toUTCString());
     console.log("set start time");
   };
-  const endTimer = () => {
+  const endTimer = async () => {
     const timeElapsed = Date.now();
     const endingTime = new Date(timeElapsed);
     setEndTime(endingTime.toUTCString());
     console.log("set end time");
+    return "set end time";
   };
+  const postToDatabase = async () => {
+    axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
+    console.log("posted to database")
+  };
+
+  useEffect(() => {
+    if (endTime !== "") {
+      postToDatabase();
+    }
+  }, [endTime]);
 
   window.onpageshow = (event) => {
     startTimer();
     getIp();
     getLocation();
   };
-
-  window.onbeforeunload = (event) => {
+  window.onbeforeunload = async (event) => {
     event.preventDefault();
     endTimer();
-    setTimeout(() => {
-      axios.post("https://linktreeapianalytics.pythonanywhere.com/visits", params).catch(err => console.log(err)); 
-    }, 1000)
-    console.log(params);
   };
     
   const user = {
