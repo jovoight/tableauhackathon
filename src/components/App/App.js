@@ -49,7 +49,7 @@ const App = () => {
     setCountry(result.data.location.country);
     setRegion(result.data.location.region);
     setCity(result.data.location.city);
-    console.log(`got location ${result.data}`);
+    console.log("got location");
   };
 
   const clickHandler = () => {
@@ -81,15 +81,18 @@ const App = () => {
       postToDatabase();
     }
   }, [endTime]);
-
-  window.onpageshow = (event) => {
+  window.onpageshow = () => {
     startTimer();
     getIp();
     getLocation();
   };
-  window.onpagehide = async (event) => {
-    event.preventDefault();
-    endTimer();
+  document.onvisibilitychange = () => {
+    if (document.hidden) {
+      endTimer();
+      console.log(params);
+    } else {
+      console.log(`page is ${document.visibilityState}`);
+    };
   };
     
   const user = {
