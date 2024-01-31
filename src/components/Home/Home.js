@@ -4,6 +4,7 @@ import axios from "axios";
 import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
 import ShareBar from "../ShareBar/ShareBar.js";
+import NavArrow from "../NavArrow/NavArrow.js";
 
 const Home = () => {
 
@@ -30,9 +31,11 @@ const Home = () => {
 
   const clickHandler = () => {
     params.clicked = true;
+    putToDatabase();
   }
   const convertHandler = () => {
     params.converted = true;
+    putToDatabase();
   }
   const startTimer = () => {
     const timeElapsed = Date.now();
@@ -118,6 +121,7 @@ const Home = () => {
           handleClick={user.handleClick}
           handleConvert={user.handleConvert}
         />
+        <NavArrow />
         <ShareBar />
     </div>
     
