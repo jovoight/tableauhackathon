@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import Home from "../Home/Home.js";
-import Analytics from "../Analytics/Analytics.js";
+import Home from '../Home/Home.js';
+import Analytics from '../Analytics/Analytics.js';
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <main className="main">
         <Routes>
           <Route path="tableauhackathon" element={<Home />} />
-          <Route path="/tableauhackathon/analytics" element={<Analytics />} />
+          <Route path="tableauhackathon/analytics" element={<Analytics />} />
         </Routes>
       </main>
     </BrowserRouter>
