@@ -17,9 +17,12 @@ const Analytics = () => {
     })
 
     return (
+        <>
+        <script type="module" src="https://my-server/javascripts/api/tableau.embedding.3.latest.min.js"></script>
         <div>
             <tableau-viz {...vizAttributes}></tableau-viz>
         </div>
+        </>
     );
 };
 
