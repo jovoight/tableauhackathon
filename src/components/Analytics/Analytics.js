@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { TableauViz, TableauEventType, FilterUpdateType } from 'https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js';
+import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
+// import { TableauViz, TableauEventType, FilterUpdateType } from 'https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js';
 
+/*
 const Analytics = () => {
     const [vizAttributes, setVizAttributes] = useState({});
 
@@ -17,9 +19,63 @@ const Analytics = () => {
     }, []);
 
     return (
-        <div>
-            <tableau-viz {...vizAttributes}></tableau-viz>
-        </div>
+        <>
+            <Helmet>
+                <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.1.0.min.js" async></script>
+            </Helmet>
+            <div>
+                <tableau-viz {...vizAttributes}></tableau-viz>
+            </div>
+        </>
+    );
+};
+
+export default Analytics;
+*/
+
+const Analytics = () => {
+    const [ viz, setViz ] = useState();
+    const [ vizReady, setVizReady ] = useState(false);
+
+    const vizRef = useRef(null);
+
+    const vizIsReady = async (e) => {
+        setVizReady(true);
+    };
+
+    useEffect(() => {
+        console.log("[App.js] VizRef", vizRef);
+        if (vizRef.current) {
+            const vizEl = vizRef.current;
+            vizEl.addEventListener("firstinteractive", vizIsReady);
+        }
+    }, [vizRef]);
+
+    const loadViz = () => {
+        setViz(
+            <tableau-viz
+                ref={vizRef}
+                id="tableauViz"
+                src={"https://public.tableau.com/views/WorldIndicators/GDPpercapita"}
+                hide-tabs={true}
+                toolbar="hidden"
+            />
+        );
+    };
+
+    useEffect(() => {
+        loadViz();
+    });
+
+    return (
+        <>
+            <Helmet>
+                <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.1.0.min.js" async></script>
+            </Helmet>
+            <div>
+                {viz}
+            </div>
+        </>
     );
 };
 
