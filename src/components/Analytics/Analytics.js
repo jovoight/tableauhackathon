@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TableauViz, TableauEventType, FilterUpdateType } from 'https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js';
+// import { TableauViz, TableauEventType, FilterUpdateType } from 'https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js';
 
 const Analytics = () => {
     const [vizAttributes, setVizAttributes] = useState({});
