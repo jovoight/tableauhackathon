@@ -1,0 +1,14 @@
+
+.NavArrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin: auto;
+}
+.NavArrow svg polygon {
+    fill: black;
+    transition: fill 0.3s;
+}
+.NavArrow svg:hover polygon {
+    fill: white;
+}
