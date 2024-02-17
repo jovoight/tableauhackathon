@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 import LinkList from "../LinkList/LinkList.js";
 import Profile from "../Profile/Profile.js";
 import ShareBar from "../ShareBar/ShareBar.js";
-import NavArrow from "../NavArrow/NavArrow.js";
 
 const Home = () => {
 
@@ -110,21 +110,24 @@ const Home = () => {
   };
 
   return (
-    <div className="Home">
-        <Profile 
-          name={user.name}
-          profilePicPath={user.profilePicPath}
-        />
-        <LinkList 
-          links={user.links}
-          subscribeLink={user.subscribeLink}
-          handleClick={user.handleClick}
-          handleConvert={user.handleConvert}
-        />
-        <NavArrow />
-        <ShareBar />
-    </div>
-    
+    <motion.div 
+      className="Home"
+      initial={{ x: 2000, opacity: 0 }} 
+      animate={{ x: 0, opacity: 1, transition: { duration: 0.7 } }} 
+      exit={{ x: -2000, opacity: 0, transition: { duration: 0.7 } }}
+    >
+      <Profile 
+        name={user.name}
+        profilePicPath={user.profilePicPath}
+      />
+      <LinkList 
+        links={user.links}
+        subscribeLink={user.subscribeLink}
+        handleClick={user.handleClick}
+        handleConvert={user.handleConvert}
+      />
+      <ShareBar /> 
+    </motion.div>          
   );
 };
 

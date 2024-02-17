@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+
 // import { TableauViz, TableauEventType, FilterUpdateType } from 'https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js';
 
 /*
@@ -68,14 +70,19 @@ const Analytics = () => {
     });
 
     return (
-        <>
+        <motion.div
+            className="Analytics"
+            initial={{ x: 2000, opacity: 0 }} 
+            animate={{ x: 0, opacity: 1, transition: { duration: 0.7 } }} 
+            exit={{ x: -2000, opacity: 0, transition: { duration: 0.7 } }}
+        >
             <Helmet>
                 <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.1.0.min.js" async></script>
             </Helmet>
             <div>
                 {viz}
             </div>
-        </>
+        </motion.div>
     );
 };
 
