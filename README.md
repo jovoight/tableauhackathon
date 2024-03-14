@@ -8,5 +8,5 @@ Here is our back-end code: [GitHub Repo: Back-End](https://github.com/JosephArms
 
 Here is our data-generation code: [GitHub Repo: Data Generation](https://github.com/JosephArmstrong314/tableauhackathon-datageneration).
 
-Here is our DevPost submission: insert-link-here
+Here is our DevPost submission: [DevPost Submission](https://devpost.com/software/social-media-analytics-dashboard).
 
